@@ -36,3 +36,4 @@ module Tictactoe
       g.view_specs false
     end
   end
+end
