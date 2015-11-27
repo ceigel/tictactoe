@@ -1,4 +1,5 @@
 class Game < ActiveRecord::Base
+  has_one :round
   validates :player1, presence: true, length: {maximum: 100}
   validates :player2, presence: true, length: {maximum: 100}
   validates :score_player1, numericality: { only_integer: true, greater_than_or_equal_to: 0}
