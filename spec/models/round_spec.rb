@@ -59,7 +59,7 @@ RSpec.describe Round, type: :model do
   describe "make_move" do
     before do
       round.start_new(2)
-      round.make_move(0, 0)
+      round.make_move(row: 0, column: 0)
     end
 
     it "is expected to have registered move and with 0" do
@@ -76,7 +76,7 @@ RSpec.describe Round, type: :model do
 
     describe "after second make_move" do
       before do
-        round.make_move(0, 1)
+        round.make_move(row: 0, column: 1)
       end
 
       it "is expected to have registered move and with 1" do
@@ -103,14 +103,14 @@ RSpec.describe Round, type: :model do
       # 0 0 0
       # X X _
       # _ _ _
-      round.make_move(0, 0)
-      round.make_move(1, 0)
-      round.make_move(0, 1)
-      round.make_move(1, 1)
-      round.make_move(0, 2)
+      round.make_move(row: 0, column: 0)
+      round.make_move(row: 1, column: 0)
+      round.make_move(row: 0, column: 1)
+      round.make_move(row: 1, column: 1)
+      round.make_move(row: 0, column: 2)
     end
 
-    it "is expected to have finished" do
+    it "is expected to have ficolumn: nished" do
       expect(round.finished?).to be true
     end
 
@@ -125,13 +125,13 @@ RSpec.describe Round, type: :model do
       # X 0 0
       # X X 0
       # X _ _
-      round.make_move(0, 0) # x
-      round.make_move(0, 1) # 0
-      round.make_move(1, 1) # x
-      round.make_move(0, 2) # 0
-      round.make_move(1, 0) # x
-      round.make_move(0, 2) # 0
-      round.make_move(2, 0) # x
+      round.make_move(row: 0, column: 0) # x
+      round.make_move(row: 0, column: 1) # 0
+      round.make_move(row: 1, column: 1) # x
+      round.make_move(row: 0, column: 2) # 0
+      round.make_move(row: 1, column: 0) # x
+      round.make_move(row: 0, column: 2) # 0
+      round.make_move(row: 2, column: 0) # x
     end
 
     it "is expected to have finished" do
@@ -149,15 +149,15 @@ RSpec.describe Round, type: :model do
       # x 0 x
       # 0 x 0
       round.start_new(2)
-      round.make_move(0, 0) # 0
-      round.make_move(1, 0) # x
-      round.make_move(0, 1) # 0
-      round.make_move(0, 2) # x
-      round.make_move(1, 1) # 0
-      round.make_move(1, 2) # x
-      round.make_move(2, 0) # 0
-      round.make_move(2, 1) # x
-      round.make_move(2, 2) # 0
+      round.make_move(row: 0, column: 0) # 0
+      round.make_move(row: 1, column: 0) # x
+      round.make_move(row: 0, column: 1) # 0
+      round.make_move(row: 0, column: 2) # x
+      round.make_move(row: 1, column: 1) # 0
+      round.make_move(row: 1, column: 2) # x
+      round.make_move(row: 2, column: 0) # 0
+      round.make_move(row: 2, column: 1) # x
+      round.make_move(row: 2, column: 2) # 0
     end
 
     it "is expected to have finished" do
@@ -175,15 +175,15 @@ RSpec.describe Round, type: :model do
       # X 0 X
       # X 0 X
       # 0 X 0
-      round.make_move(0, 0) # x
-      round.make_move(0, 1) # 0
-      round.make_move(1, 0) # x
-      round.make_move(1, 1) # 0
-      round.make_move(0, 2) # x
-      round.make_move(2, 0) # 0
-      round.make_move(1, 2) # x
-      round.make_move(2, 2) # 0
-      round.make_move(2, 1) # x
+      round.make_move(row: 0, column: 0) # x
+      round.make_move(row: 0, column: 1) # 0
+      round.make_move(row: 1, column: 0) # x
+      round.make_move(row: 1, column: 1) # 0
+      round.make_move(row: 0, column: 2) # x
+      round.make_move(row: 2, column: 0) # 0
+      round.make_move(row: 1, column: 2) # x
+      round.make_move(row: 2, column: 2) # 0
+      round.make_move(row: 2, column: 1) # x
     end
 
     it "is expected to have finished" do
@@ -194,5 +194,4 @@ RSpec.describe Round, type: :model do
       expect(round.winner).to be_nil
     end
   end
-
 end

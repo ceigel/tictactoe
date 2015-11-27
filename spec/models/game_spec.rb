@@ -84,7 +84,7 @@ RSpec.describe Game, type: :model do
 
     describe "start a second round" do
       before do
-        game.round.make_move(0,0)
+        game.round.make_move(row: 0, column: 0)
         game.new_round
       end
 

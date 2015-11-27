@@ -7,7 +7,7 @@ class Round < ActiveRecord::Base
     self.update(current_player: player, board_state: '_' * 9)
   end
 
-  def make_move(row, column)
+  def make_move(row: , column: )
     symbol = get_current_symbol
     board_state[index_from_row_column(row, column)] = symbol
     self.update(board_state: board_state, current_player: next_player)
