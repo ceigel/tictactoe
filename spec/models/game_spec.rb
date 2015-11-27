@@ -10,6 +10,8 @@ RSpec.describe Game, type: :model do
   it { is_expected.to respond_to :player2 }
   it { is_expected.to respond_to :score_player1 }
   it { is_expected.to respond_to :score_player2 }
+  it { is_expected.to respond_to :play_count }
+  it { is_expected.to respond_to :round }
 
   it 'is valid when built from parameters' do
     g = FactoryGirl.build(:game, player1: "Test1", player2: "Test2")
@@ -43,5 +45,56 @@ RSpec.describe Game, type: :model do
 
   it "is invalid when player2 score is negative" do
     expect(FactoryGirl.build(:game, score_player2: -1)).not_to be_valid
+  end
+
+  it "is invalid when play_count is negative" do
+    expect(FactoryGirl.build(:game, play_count: -1)).not_to be_valid
+  end
+
+  describe "initialization" do
+    before do
+      @game = Game.new(player1: "one", player2: "two")
+    end
+
+    it "is expected play_count to equal 0" do
+      expect(@game.play_count).to eq 0
+    end
+
+    it "is expected score_player1 to equal 0" do
+      expect(@game.score_player1).to eq 0
+    end
+
+    it "is expected score_player2 to equal 0" do
+      expect(@game.score_player2).to eq 0
+    end
+  end
+
+  describe "start new round" do
+    before do
+      game.new_round
+    end
+
+    it "is expected that the current player to be the first player" do
+      expect(game.round.current_player).to eq 1
+    end
+
+    it "is expected that the new round is unplayed" do
+      expect(game.round.board_state).to eq '_' * 9
+    end
+
+    describe "start a second round" do
+      before do
+        game.round.make_move(0,0)
+        game.new_round
+      end
+
+      it "is expected that the current player to be the second player" do
+        expect(game.round.current_player).to eq 2
+      end
+
+      it "is expected that the new round is unplayed" do
+        expect(game.round.board_state).to eq '_' * 9
+      end
+    end
   end
 end
