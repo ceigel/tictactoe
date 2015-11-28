@@ -8,10 +8,7 @@ module GamesHelper
 
   def cell_html(round, row, col)
     cell_text = round.board(row: row, column: col)
-    cell_text == "_" ? link_to_cell_update(round: round, row: row, column: col): cell_text
+    cell_text.sub!("_", "")
+    cell = content_tag :td, cell_text, data: { clickable: cell_text.empty?, link: game_round_path(round.game, round, round: {row: row, column: col})}
   end
-  private
-    def link_to_cell_update(round:, row:, column:)
-      link_to "_", game_round_path(round.game, round, round: {row: row, column: column}), method: :patch, remote: true
-    end
 end

@@ -4,9 +4,7 @@
       <% 3.times do |row| %>
         <tr>
           <% 3.times do |col| %>
-            <td>
-              <%= cell_html(@game.round, row, col) %>
-            </td>
+            <%= cell_html(@game.round, row, col) %>
           <% end %>
         </tr>
       <% end %>
