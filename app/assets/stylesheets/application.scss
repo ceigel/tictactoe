@@ -26,3 +26,8 @@ body { padding-top: 70px; }
     text-align: center;
   }
 }
+
+.current_player {
+  @extend .text-success;
+  font-weight: bold;
+}

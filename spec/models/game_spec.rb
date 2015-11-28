@@ -69,32 +69,29 @@ RSpec.describe Game, type: :model do
     end
   end
 
-  describe "start new round" do
+  describe "register_round_finished" do
     before do
-      game.new_round
+      @game = FactoryGirl.create(:game, score_player1: 0, score_player2: 0, play_count: 0)
+      @game.round.update(board_state: "XXX00____")
+      @game.register_round_finished
+      @game.reload
     end
 
-    it "is expected that the current player to be the first player" do
-      expect(game.round.current_player).to eq 1
+    it "is expected round_finished to increase play_count by 1" do
+      expect(@game.play_count).to eq 1
     end
 
-    it "is expected that the new round is unplayed" do
-      expect(game.round.board_state).to eq '_' * 9
+    it "is expected score_player1 to increase by 1" do
+      expect(@game.score_player1).to eq 1
     end
 
-    describe "start a second round" do
-      before do
-        game.round.make_move(row: 0, column: 0)
-        game.new_round
-      end
+    it "is expected score_player2 remain unchanged" do
+      expect(@game.score_player2).to eq 0
+    end
 
-      it "is expected that the current player to be the second player" do
-        expect(game.round.current_player).to eq 2
-      end
-
-      it "is expected that the new round is unplayed" do
-        expect(game.round.board_state).to eq '_' * 9
-      end
+    it "is expected round to be new" do
+      expect(@game.round.board_state).to eq "_" * 9
+      expect(@game.round.current_player).to eq 2
     end
   end
 end

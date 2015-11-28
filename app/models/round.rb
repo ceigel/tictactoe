@@ -8,14 +8,25 @@ class Round < ActiveRecord::Base
   end
 
   def make_move(row: , column: )
-    symbol = get_current_symbol
+    symbol = current_symbol
     board_state[index_from_row_column(row, column)] = symbol
     self.update(board_state: board_state, current_player: next_player)
+  end
+
+  def board(row:, column:)
+    board_state[index_from_row_column(row, column)]
   end
 
   def finished?
     symbols_count = PLAYER_SYMBOLS.map{|s| board_state.count(s)}.inject(&:+)
     symbols_count == 9 || !winner.nil?
+  end
+
+  def current_symbol
+    if current_player < 1 || current_player > 2
+      raise "Impossible value for current_player #{current_player}"
+    end
+    return PLAYER_SYMBOLS[current_player - 1]
   end
 
   # returns player who won
@@ -33,13 +44,6 @@ class Round < ActiveRecord::Base
     PLAYER_SYMBOLS = ["X", "0"]
     def index_from_row_column(row, column)
       row * 3 + column
-    end
-
-    def get_current_symbol
-      if current_player < 1 || current_player > 2
-        raise "Impossible value for current_player #{current_player}"
-      end
-      return PLAYER_SYMBOLS[current_player - 1]
     end
 
     def rows

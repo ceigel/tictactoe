@@ -1,32 +1,30 @@
 <p id="notice"><%= notice %></p>
 
 <div class="row">
-  <%= link_to 'New Game', new_game_path %>
+  <div class="col-md-4 centered">
+    <h1>Games</h1>
 
-  <h1>Previous Games</h1>
-
-  <table>
-    <thead>
-      <tr>
-        <th class="col-xs-3">Player1</th>
-        <th class="col-xs-3">Player2</th>
-        <th class="col-xs-3">Score player1</th>
-        <th class="col-xs-3">Score player2</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @games.each do |game| %>
+    <table>
+      <thead>
         <tr>
-          <td class="col-xs-3"><%= game.player1 %></td>
-          <td class="col-xs-3"><%= game.player2 %></td>
-          <td class="col-xs-3"><%= game.score_player1 %></td>
-          <td class="col-xs-3"><%= game.score_player2 %></td>
+          <th class="col-xs-3">Player1</th>
+          <th class="col-xs-3">Player2</th>
+          <th class="col-xs-3 text-center" colspan="3">Score</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
 
-  <br>
+      <tbody>
+        <% @games.each do |game| %>
+          <tr>
+            <td class="col-xs-3"><%= game.player1 %></td>
+            <td class="col-xs-3"><%= game.player2 %></td>
+            <td class="col-xs-1"><%= game.score_player1 %></td>
+            <td class="col-xs-1">-</td>
+            <td class="col-xs-1"><%= game.score_player2 %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
+  </div>
 </div>

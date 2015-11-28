@@ -47,8 +47,16 @@ RSpec.describe Round, type: :model do
       expect(round.current_player).to eq 2
     end
 
+    it "is expected to have current_symbol equal to 0" do
+      expect(round.current_symbol).to eq "0"
+    end
+
     it "is expected to have an empty board" do
       expect(round.board_state).to eq '_' * 9
+    end
+
+    it "is expected to not be finished" do
+      expect(round.finished?).to eq false
     end
 
     it "is expected to not be finished" do
@@ -63,11 +71,15 @@ RSpec.describe Round, type: :model do
     end
 
     it "is expected to have registered move and with 0" do
-      expect(round.board_state[0]).to eq '0'
+      expect(round.board(row:0, column:0)).to eq '0'
     end
 
     it "is expected to change the current player" do
       expect(round.current_player).to eq 1
+    end
+
+    it "is expected to change the current symbol" do
+      expect(round.current_symbol).to eq "X"
     end
 
     it "is expected not to have finished" do
@@ -80,11 +92,15 @@ RSpec.describe Round, type: :model do
       end
 
       it "is expected to have registered move and with 1" do
-        expect(round.board_state[1]).to eq 'X'
+        expect(round.board(row:0, column:1)).to eq 'X'
       end
 
       it "is expected to change the current player" do
         expect(round.current_player).to eq 2
+      end
+
+      it "is expected to change the current symbol" do
+        expect(round.current_symbol).to eq "0"
       end
 
       it "is expected not to have finished" do
