@@ -1,0 +1,29 @@
+<%= form_for @game, html: {class: 'form col-xs-12'} do |f| %>
+  <% if @game.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h2>
+
+      <ul>
+      <% @game.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-xs-4">
+      <div class="form-group">
+        <%= f.label :player1 %>
+        <%= f.text_field :player1, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :player2 %>
+        <%= f.text_field :player2, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "Start Game", class: "btn btn-success" %>
+      </div>
+    </div>
+  </div>
+<% end %>

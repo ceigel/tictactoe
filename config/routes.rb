@@ -1,3 +1,7 @@
 Rails.application.routes.draw do
-  root 'home#home'
+
+  resources :games, except: [:edit, :update, :destroy] do
+    resources :round, only: [:update]
+  end
+  root 'games#index'
 end

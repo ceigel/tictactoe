@@ -2,3 +2,27 @@
 @import "bootstrap";
 
 body { padding-top: 70px; }
+
+#error_explanation {
+  @extend .alert;
+  @extend .alert-danger;
+}
+
+.field_with_errors {
+  @extend .has-error;
+}
+
+.centered {
+  float: none;
+  margin: 0 auto;
+}
+
+.tictactoe {
+  margin-top: 20px;
+  td {
+    font-size: 400%;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+  }
+}
