@@ -27,3 +27,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'database_cleaner'
 end
+
+group :development do
+  gem 'annotate'
+end

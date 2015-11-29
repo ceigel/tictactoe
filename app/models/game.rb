@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: games
+#
+#  id            :integer          not null, primary key
+#  player1       :string
+#  player2       :string
+#  score_player1 :integer          default(0)
+#  score_player2 :integer          default(0)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  play_count    :integer          default(0)
+#
+
 class Game < ActiveRecord::Base
   has_one :round
   after_create :create_round

@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: rounds
+#
+#  id             :integer          not null, primary key
+#  board_state    :string(9)        default("_________")
+#  game_id        :integer
+#  current_player :integer          default(1)
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
 class Round < ActiveRecord::Base
   belongs_to :game
   validates :current_player, numericality: { only_integer: true, greater_than_or_equal_to: 1}
