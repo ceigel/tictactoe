@@ -13,6 +13,7 @@ RSpec.describe GamesController, type: :controller do
       game = Game.create! valid_attributes
       get :index, {}
       expect(assigns(:games)).to eq([game])
+      expect(assigns(:leaders)).to eq([[game.player1, game.score_player1], [game.player2, game.score_player2]])
     end
   end
 
@@ -21,6 +22,7 @@ RSpec.describe GamesController, type: :controller do
       game = Game.create! valid_attributes
       get :show, {:id => game.to_param}
       expect(assigns(:game)).to eq(game)
+      expect(assigns(:round)).to eq(game.round)
     end
   end
 
