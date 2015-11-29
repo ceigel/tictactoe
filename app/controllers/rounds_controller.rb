@@ -8,7 +8,7 @@ class RoundsController < ApplicationController
 
   def create
     @game = Game.find(params[:game_id])
-    @game.next_round
+    @game.reset_round
     redirect_to @game
   end
 

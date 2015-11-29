@@ -77,10 +77,6 @@ RSpec.describe Game, type: :model do
       @game.reload
     end
 
-    it "is expected round_finished to increase play_count by 1" do
-      expect(@game.play_count).to eq 1
-    end
-
     it "is expected score_player1 to increase by 1" do
       expect(@game.score_player1).to eq 1
     end
@@ -89,9 +85,20 @@ RSpec.describe Game, type: :model do
       expect(@game.score_player2).to eq 0
     end
 
-    it "is expected round to be new" do
-      expect(@game.round.board_state).to eq "_" * 9
-      expect(@game.round.current_player).to eq 2
+    describe "next_round" do
+
+      before do
+        @game.next_round
+      end
+
+      it "is expected round_finished to increase play_count by 1" do
+        expect(@game.play_count).to eq 1
+      end
+
+      it "is expected round to be new" do
+        expect(@game.round.board_state).to eq "_" * 9
+        expect(@game.round.current_player).to eq 2
+      end
     end
   end
 end
