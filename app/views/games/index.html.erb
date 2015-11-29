@@ -2,50 +2,11 @@
 <div class="row">
   <div class="col-md-7 centered">
     <div class="row">
-      <div class="col-xs-6">
-        <h1>Leaderboard</h1>
-        <table class="table table-condensed">
-          <thead>
-            <tr>
-              <th> Player </th>
-              <th> Score </th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @leaders.each do |k, v| %>
-              <tr>
-                <td> <%= k %> </td>
-                <td> <%= v %> </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+      <div class="col-xs-6" id="leaderboard">
+        <%= render "leaderboard" %>
       </div>
-      <div class="col-xs-6">
-        <h1>Games</h1>
-
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Player1</th>
-              <th>Player2</th>
-              <th colspan="2">Score</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @games.each do |game| %>
-              <tr>
-                <td><%= game.player1 %></td>
-                <td><%= game.player2 %></td>
-                <td><%= game.score_player1 %></td>
-                <td><%= game.score_player2 %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-
-
+      <div class="col-xs-6" id="games_list">
+        <%= render "games_list" %>
       </div>
     </div>
   </div>

@@ -1,0 +1,17 @@
+<h1>Leaderboard</h1>
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th> Player </th>
+      <th> Score </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @leaders.each do |k, v| %>
+      <tr>
+        <td> <%= k %> </td>
+        <td> <%= v %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

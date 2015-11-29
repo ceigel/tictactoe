@@ -1,0 +1,23 @@
+<h1>Games</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Player1</th>
+      <th>Player2</th>
+      <th colspan="2">Score</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @games.each do |game| %>
+      <tr>
+        <td><%= game.player1 %></td>
+        <td><%= game.player2 %></td>
+        <td><%= game.score_player1 %></td>
+        <td><%= game.score_player2 %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
