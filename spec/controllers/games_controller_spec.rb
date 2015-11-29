@@ -1,12 +1,8 @@
 require 'rails_helper'
 
-
 RSpec.describe GamesController, type: :controller do
-
   let(:valid_attributes) { FactoryGirl.attributes_for(:game) }
-
   let(:invalid_attributes) { FactoryGirl.attributes_for(:game, player1: nil) }
-
 
   describe "GET #index" do
     it "assigns all games as @games" do
