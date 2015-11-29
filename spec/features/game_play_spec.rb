@@ -6,7 +6,7 @@ def click_and_check_cell(row:, column:, text:)
 end
 
 feature "leaderboard and games list", type: :feature, js:true do
-  before(:all) do
+  before do
     @game = FactoryGirl.create(:game, player1: 'one', player2: 'two')
   end
 
@@ -19,17 +19,17 @@ feature "leaderboard and games list", type: :feature, js:true do
     click_and_check_cell(row: 2, column: 2, text: '0')
     click_and_check_cell(row: 1, column: 3, text: 'X')
     expect(page).to have_content('Player one won')
-    expect(page).to have_link('Next Game')
-    click_link('Next Game')
+    expect(page).to have_link('Next Round')
+    click_link('Next Round')
     expect(page.all(:xpath, '//tbody/tr/td')).to have_content ''
   end
 
   scenario "can't click twice on the same cell" do
     visit game_path(@game)
-    click_and_check_cell(row: 1, column: 1, text: '0')
-    click_and_check_cell(row: 1, column: 1, text: '0')
-    click_and_check_cell(row: 2, column: 1, text: 'X')
-    click_and_check_cell(row: 2, column: 1, text: 'X')
+    click_and_check_cell(row: 1, column: 1, text: 'X')
+    click_and_check_cell(row: 1, column: 1, text: 'X')
+    click_and_check_cell(row: 2, column: 1, text: '0')
+    click_and_check_cell(row: 2, column: 1, text: '0')
   end
 end
 

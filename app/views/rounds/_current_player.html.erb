@@ -1,4 +1,5 @@
 <%= player_name_field(@game.player1, 1, @game.score_player1, @game.round.current_player) %>
+<br/>
 <%= player_name_field(@game.player2, 2, @game.score_player2, @game.round.current_player) %>
 <% flash.each do |name, msg| %>
   <% if msg.is_a?(String) %>

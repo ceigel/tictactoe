@@ -1,5 +1,5 @@
 <% if @round.finished? %>
   <div id = "buttons">
-    <%= link_to  "Next Game", game_rounds_path(@game), method: :create, class: "pull-right btn btn-primary" %>
+    <%= link_to  "Next Round", game_rounds_path(@game), method: :create, class: "pull-right btn btn-primary" %>
   </div>
 <% end %>
