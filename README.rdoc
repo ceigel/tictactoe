@@ -1,13 +1,14 @@
-## TicTacToe
+== TicTacToe
 
 This is a tic-tac-toe game written in Rails.
 
 Restrictions: Each game has 2 players. The first player is always playing with 'X', the second always with '0'. Players change turns after each round.
 
-## Design
-### Models:
+== Design
+
+=== Models:
 ---
-#### Game
+==== Game
   A game is a match between two players. It represents multiple rounds played by the same two players.
 
   Attributes:
@@ -19,7 +20,7 @@ Restrictions: Each game has 2 players. The first player is always playing with '
   - round: Each game has a single round. It's used to store the game state. After a round is finished, the round is reset and reused.
 
 ---
-#### Round
+==== Round
   A round represents a single instance of a game play.
 
   Attributes:
@@ -29,9 +30,9 @@ Restrictions: Each game has 2 players. The first player is always playing with '
     * _ - The corresponding cell is empty.
   - current_player: The player which will make the next move.
 
-### Controllers:
+=== Controllers:
 ---
-#### GamesController
+==== GamesController
   Actions:
   * index - Shows the games history and the leaderboard.
   * new - displays the form asking for the 2 player names.
@@ -39,24 +40,24 @@ Restrictions: Each game has 2 players. The first player is always playing with '
   * show - allows the current round to be played.
 
 ---
-#### RoundsController
+==== RoundsController
   Actions:
   * update: called when a user makes a move. Called via AJAX.
   * create: when a new round is started, called when clicking "Next round".
 
-### Helpers:
+=== Helpers:
 ---
-#### RoundsHelper
+==== RoundsHelper
   Methods:
     player_name_field - used in partial rounds/_current_player.html.erb to display the player's name field during the round. Changes colors for current_player.
     cell_html - Used in partial rounds/_table.html.erb to generate a td tag for a cell of the playing field. When a cell is filled or when the round is.
 
-### Javascripts:
+=== Javascripts:
 ---
-#### Rounds.js.coffee
+==== Rounds.js.coffee
 - Sets the play table cells to be clickable and places POST calls for the data-link on each cell.
 
-## How to run tests
+== How to run tests
 ```
 bin/rspec spec
 ```
