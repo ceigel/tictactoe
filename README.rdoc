@@ -9,48 +9,48 @@ Restrictions: Each game has 2 players. The first player is always playing with '
 === Models:
 ---
 ==== Game
-  A game is a match between two players. It represents multiple rounds played by the same two players.
+A game is a match between two players. It represents multiple rounds played by the same two players.
 
-  Attributes:
-  - player1: The name of the first player.
-  - player2: The name of the second player.
-  - player_score1: The wins count of the first player.
-  - player_score2: The wins count of the second player.
-  - play_count: The count of rounds played (it counts draw's too).
-  - round: Each game has a single round. It's used to store the game state. After a round is finished, the round is reset and reused.
+Attributes:
+- player1: The name of the first player.
+- player2: The name of the second player.
+- player_score1: The wins count of the first player.
+- player_score2: The wins count of the second player.
+- play_count: The count of rounds played (it counts draw's too).
+- round: Each game has a single round. It's used to store the game state. After a round is finished, the round is reset and reused.
 
 ---
 ==== Round
-  A round represents a single instance of a game play.
+A round represents a single instance of a game play.
 
-  Attributes:
-  - board_state: The state of the board. It's represented as a string of 9 characters, stored by rows, each row is represented by 3 characters. The following characters are possible:
-    * X
-    * 0
-    * _ - The corresponding cell is empty.
-  - current_player: The player which will make the next move.
+Attributes:
+- board_state: The state of the board. It's represented as a string of 9 characters, stored by rows, each row is represented by 3 characters. The following characters are possible:
+  * X
+  * 0
+  * _ - The corresponding cell is empty.
+- current_player: The player which will make the next move.
 
 === Controllers:
 ---
 ==== GamesController
-  Actions:
-  * index - Shows the games history and the leaderboard.
-  * new - displays the form asking for the 2 player names.
-  * create - creates the game.
-  * show - allows the current round to be played.
+Actions:
+* index - Shows the games history and the leaderboard.
+* new - displays the form asking for the 2 player names.
+* create - creates the game.
+* show - allows the current round to be played.
 
 ---
 ==== RoundsController
-  Actions:
-  * update: called when a user makes a move. Called via AJAX.
-  * create: when a new round is started, called when clicking "Next round".
+Actions:
+* update: called when a user makes a move. Called via AJAX.
+* create: when a new round is started, called when clicking "Next round".
 
 === Helpers:
 ---
 ==== RoundsHelper
-  Methods:
-    player_name_field - used in partial rounds/_current_player.html.erb to display the player's name field during the round. Changes colors for current_player.
-    cell_html - Used in partial rounds/_table.html.erb to generate a td tag for a cell of the playing field. When a cell is filled or when the round is.
+Methods:
+- player_name_field - used in partial rounds/_current_player.html.erb to display the player's name field during the round. Changes colors for current_player.
+- cell_html - Used in partial rounds/_table.html.erb to generate a td tag for a cell of the playing field. When a cell is filled or when the round is.
 
 === Javascripts:
 ---
