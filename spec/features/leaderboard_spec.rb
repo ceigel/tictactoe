@@ -28,6 +28,15 @@ feature "leaderboard and games list", type: :feature do
       expect(page).to have_content 'one'
       expect(page).to have_content 'two'
       expect(page).to have_content 'three'
+
+    end
+  end
+
+  scenario 'games are displayed in reverse order' do
+    visit root_path
+    within('#games_list tbody tr:first') do
+      expect(page).to have_content 'three'
+      expect(page).to have_content 'two'
     end
   end
 end

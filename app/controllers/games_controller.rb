@@ -2,7 +2,7 @@ class GamesController < ApplicationController
   before_action :set_game, only: [:show]
 
   def index
-    @games = Game.all
+    @games = Game.all.reverse_order
     @leaders = get_leaderboard
   end
 
