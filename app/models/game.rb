@@ -13,11 +13,14 @@ class Game < ActiveRecord::Base
   def register_round_finished
     update_scores
     self.update(play_count: play_count + 1, score_player1: score_player1, score_player2: score_player2)
-    round.start_new(play_count % 2 + 1)
   end
 
   def player_name(player_number)
     player_number == 1 ? player1 : player2
+  end
+
+  def next_round
+    round.start_new(play_count % 2 + 1)
   end
 
   private

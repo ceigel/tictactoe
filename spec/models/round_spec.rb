@@ -36,6 +36,9 @@ RSpec.describe Round, type: :model do
       expect(@round.board_state).to eq '_' * 9
     end
 
+    it "is expected to have no winner" do
+      expect(@round.winner).to be_nil
+    end
   end
 
   describe "start_new" do
@@ -86,6 +89,10 @@ RSpec.describe Round, type: :model do
       expect(round.finished?).to be false
     end
 
+    it "is expected to raise error when cell already taken" do
+      expect{round.make_move(row:0, column: 0)}.to raise_error(RuntimeError)
+    end
+
     describe "after second make_move" do
       before do
         round.make_move(row: 0, column: 1)
@@ -109,6 +116,16 @@ RSpec.describe Round, type: :model do
 
       it "is expected to have no winner" do
         expect(round.winner).to be_nil
+      end
+    end
+
+    describe "when game won" do
+      before do
+        round.board_state = "XXX00____"
+      end
+
+      it "is expected to raise error when game already won" do
+        expect { round.make_move(row:2, column:2)}.to raise_error(RuntimeError)
       end
     end
   end
@@ -138,15 +155,13 @@ RSpec.describe Round, type: :model do
   describe "column winner" do
     before do
       round.start_new(1)
-      # X 0 0
-      # X X 0
+      # X _ 0
+      # X _ 0
       # X _ _
       round.make_move(row: 0, column: 0) # x
-      round.make_move(row: 0, column: 1) # 0
-      round.make_move(row: 1, column: 1) # x
       round.make_move(row: 0, column: 2) # 0
       round.make_move(row: 1, column: 0) # x
-      round.make_move(row: 0, column: 2) # 0
+      round.make_move(row: 1, column: 2) # 0
       round.make_move(row: 2, column: 0) # x
     end
 

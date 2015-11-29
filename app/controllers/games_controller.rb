@@ -7,6 +7,7 @@ class GamesController < ApplicationController
   end
 
   def show
+    @round = @game.round
   end
 
   # GET /games/new

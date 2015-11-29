@@ -3,13 +3,20 @@ class RoundsController < ApplicationController
     @round = Round.find(params[:id])
     @game = @round.game
     make_round_move(round_params["row"], round_params["column"])
-    if @round.finished?
-      message_round_finished
-      @game.register_round_finished
-    end
+    round_finished if @round.finished?
+  end
+
+  def create
+    @game = Game.find(params[:game_id])
+    @game.next_round
+    redirect_to @game
   end
 
   private
+    def round_finished
+      flash.now[:notice] = message_round_finished
+      @game.register_round_finished
+    end
     def round_params
       params.require(:round).permit(:row, :column)
     end
@@ -21,9 +28,9 @@ class RoundsController < ApplicationController
 
     def message_round_finished
       if @round.winner.nil?
-        flash.now[:notice] = "Game ended in draw"
+        "Game ended in draw"
       else
-        flash.now[:notice] = "Player #{player_name(@round.winner)} won"
+        "Player #{player_name(@round.winner)} won"
       end
     end
 

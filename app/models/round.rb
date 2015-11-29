@@ -9,6 +9,8 @@ class Round < ActiveRecord::Base
 
   def make_move(row: , column: )
     symbol = current_symbol
+    raise 'Round finished' if finished?
+    raise 'Move already taken' if board(row: row, column: column) != '_'
     board_state[index_from_row_column(row, column)] = symbol
     self.update(board_state: board_state, current_player: next_player)
   end
