@@ -1,28 +1,63 @@
-== README
+## TicTacToe
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a tic-tac-toe game written in Rails.
 
-Things you may want to cover:
+Restrictions: Each game has 2 players. The first player is always playing with 'X', the second always with '0'. Players change turns after each round.
 
-* Ruby version
+## Design
+### Models:
+---
+#### Game
+  A game is a match between two players. It represents multiple rounds played by the same two players.
 
-* System dependencies
+  Attributes:
+  - player1: The name of the first player.
+  - player2: The name of the second player.
+  - player_score1: The wins count of the first player.
+  - player_score2: The wins count of the second player.
+  - play_count: The count of rounds played (it counts draw's too).
+  - round: Each game has a single round. It's used to store the game state. After a round is finished, the round is reset and reused.
 
-* Configuration
+---
+#### Round
+  A round represents a single instance of a game play.
 
-* Database creation
+  Attributes:
+  - board_state: The state of the board. It's represented as a string of 9 characters, stored by rows, each row is represented by 3 characters. The following characters are possible:
+    * X
+    * 0
+    * _ - The corresponding cell is empty.
+  - current_player: The player which will make the next move.
 
-* Database initialization
+### Controllers:
+---
+#### GamesController
+  Actions:
+  * index - Shows the games history and the leaderboard.
+  * new - displays the form asking for the 2 player names.
+  * create - creates the game.
+  * show - allows the current round to be played.
 
-* How to run the test suite
+---
+#### RoundsController
+  Actions:
+  * update: called when a user makes a move. Called via AJAX.
+  * create: when a new round is started, called when clicking "Next round".
 
-* Services (job queues, cache servers, search engines, etc.)
+### Helpers:
+---
+#### RoundsHelper
+  Methods:
+    player_name_field - used in partial rounds/_current_player.html.erb to display the player's name field during the round. Changes colors for current_player.
+    cell_html - Used in partial rounds/_table.html.erb to generate a td tag for a cell of the playing field. When a cell is filled or when the round is.
 
-* Deployment instructions
+### Javascripts:
+---
+#### Rounds.js.coffee
+- Sets the play table cells to be clickable and places POST calls for the data-link on each cell.
 
-* ...
+## How to run tests
+```
+bin/rspec spec
+```
 
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
