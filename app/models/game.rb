@@ -29,7 +29,7 @@ class Game < ActiveRecord::Base
   # It resets round, and updates the score if a player won
   def register_round_finished
     update_scores
-    self.update(score_player1: score_player1, score_player2: score_player2)
+    self.save
   end
 
   # Translate from player number to player name

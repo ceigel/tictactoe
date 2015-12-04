@@ -28,7 +28,6 @@ class RoundsController < ApplicationController
 
     # Tell round to make move
     def make_round_move(row, col)
-      p = round_params
       @round.make_move(row: row.to_i, column: col.to_i)
     end
 
