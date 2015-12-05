@@ -4,6 +4,7 @@ server '95.85.3.84', roles: [:web, :app, :db], primary: true
 set :repo_url, 'git@github.com:ceigel/tictactoe.git'
 set :application, 'tictactoe'
 set :user, 'deploy'
+set :rvm_ruby_version, 'ruby-2.2.3@tictactoe'
 
 set :puma_threads, [4, 16]
 set :puma_workers, 0
