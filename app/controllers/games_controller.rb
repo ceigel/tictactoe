@@ -1,6 +1,7 @@
 # Controller for games
 class GamesController < ApplicationController
   before_action :set_game, only: [:show]
+  caches_page :new
 
   # Show leaderboard and list of all games
   def index
